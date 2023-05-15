@@ -18,7 +18,8 @@ function App() {
     useEffect(() => {
       axios.get(url).then((response) => {
         setNotes(response.data);
-      });
+      })
+      .catch((error)=>console.log(error))
     }, []);
 
 
