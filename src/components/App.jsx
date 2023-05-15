@@ -12,10 +12,11 @@ function App() {
  
     //useState hook
     const [notes, setNotes] = useState(null);
+    const url = "https://keeperapi.onrender.com";
 
     //Get notes from api 
     useEffect(() => {
-      axios.get("http://localhost:8080/").then((response) => {
+      axios.get(url).then((response) => {
         setNotes(response.data);
       });
     }, []);
@@ -30,7 +31,7 @@ function App() {
  */
 function addNote(newNote, event){
 
-  axios.post("http://localhost:8080/",{
+  axios.post(url,{
     title:newNote.title,
     content:newNote.content
   })
@@ -49,11 +50,12 @@ function addNote(newNote, event){
  * @param {*} id the note id used to delete the note
  */
 function deleteNote(id){
+  
   axios
-      .delete("http://localhost:8080/delete/"+id)
+      .delete(url+"/delete/"+id)
       .then(() => {
         alert("Post deleted!");
-        axios.get("http://localhost:8080/").then((response) => {
+        axios.get(url).then((response) => {
         setNotes(response.data);
       });
       });
